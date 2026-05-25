@@ -23,7 +23,6 @@ def create_app():
     # 全局异常处理
     @app.errorhandler(Exception)
     def handle_global_exception(e: Exception):
-        print("error1")
         msg = getattr(e, 'description', str(e))
         return Result.error(msg)
 

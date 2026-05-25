@@ -19,10 +19,13 @@ def login():
     # jwt使用
     token = create_access_token(identity="2", additional_claims={"role":"user"})
 
-    # redis使用
-    redis_client.setex('user:123:name', 60, 'Alice')
-    name = redis_client.get('user:123:name')
+    # # redis使用
+    # redis_client.setex('user:123:name', 60, 'Alice')
+    # name = redis_client.get('user:123:name')
 
+    # password = ph.hash(user.password)
+
+    # print(name)
     return Result.success({"token":token})
 
 

@@ -4,12 +4,24 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 import pytest
 from flask_jwt_extended import create_access_token,create_refresh_token,decode_token
 from src import create_app
+from src.utils import Argon2Util
 
-# 自动提供应用上下文的 fixture
+
 @pytest.fixture
 def client():
     app = create_app()
     with app.test_client() as client, app.app_context():
         yield client
 
-# 测试用例直接使用 fixture
+
+
+
+def test_argon(client):
+    password = "123456"
+    hash = Argon2Util.encrypt_password(password)
+
+    print(hash)
+
+    op = Argon2Util.verify_password(hash, password)
+
+    print(op)
