@@ -2,7 +2,7 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 
 # test_main.py
 import pytest
-from flask_jwt_extended import create_access_token,create_refresh_token,decode_token
+from flask_jwt_extended import create_access_token, create_refresh_token, decode_token
 from src import create_app
 from src.utils import Argon2Util
 
@@ -12,8 +12,6 @@ def client():
     app = create_app()
     with app.test_client() as client, app.app_context():
         yield client
-
-
 
 
 def test_argon(client):

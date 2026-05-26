@@ -8,7 +8,7 @@ from flask_redis import FlaskRedis
 # 注册数据库
 db = SQLAlchemy()
 # 注册Redis
-redis_client = FlaskRedis()
+redis_client = FlaskRedis(decode_responses=True)
 # 注册数据库迁移
 migrate = Migrate()
 # 注册jwt

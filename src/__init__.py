@@ -26,5 +26,7 @@ def create_app():
         msg = getattr(e, 'description', str(e))
         return Result.error(msg)
 
+    with app.app_context():
+        db.create_all()
 
     return app
