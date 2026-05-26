@@ -1,24 +1,26 @@
-from typing import Dict, Optional, Tuple, Any
+from flask_jwt_extended import create_access_token, create_refresh_token, decode_token, jwt_required, get_jwt_identity, \
+    get_jwt
+from functools import wraps
+from src.utils.Result import Result
 
 
 class JwtUtil:
+    def admin_required(fn):
+        @wraps(fn)
+        @jwt_required()
+        def wrapper(*args, **kwargs):
+            if get_jwt().get("role") != "admin":
+                return Result.error("权限不够")
+            return fn(*args, **kwargs)
 
-    @staticmethod
-    def create_tokens(user_id: int, role: str) -> Dict[str, str]:
-        pass
+        return wrapper
 
-    @staticmethod
-    def parse_token(token: str) -> Optional[Dict[str, Any]]:
-        pass
+    def user_required(fn):
+        @wraps(fn)
+        @jwt_required()
+        def wrapper(*args, **kwargs):
+            if get_jwt().get("role") != "user":
+                return Result.error("权限不够")
+            return fn(*args, **kwargs)
 
-    @staticmethod
-    def refresh_access_token(refresh_token: str) -> Tuple[bool, str]:
-        pass
-
-    @staticmethod
-    def get_current_user_id() -> int:
-        pass
-
-    @staticmethod
-    def get_current_user_role() -> str:
-        pass
+        return wrapper

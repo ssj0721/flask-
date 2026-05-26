@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/gcoj</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="1@192.168.85.129" uuid="311d42a3-4ffb-4e65-89ef-23d4cd08ca3e">
+      <driver-ref>redis</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>jdbc.RedisDriver</jdbc-driver>
+      <jdbc-url>jdbc:redis://192.168.85.129:6379/1</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
